@@ -11,7 +11,11 @@ app.use(cookieParser())
 
 // Routes
 app.use('/api', require('./routes/authRouter'))
+app.use('/api', require('./routes/categoryRouter'))
+
+// Admin Routes
 app.use('/api', require('./routes/admin/authRouterAd'))
+
 
 // connect db
 mongoose.connect(process.env.MONGODB_URL, {
