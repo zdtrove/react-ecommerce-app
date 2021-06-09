@@ -23,7 +23,7 @@ exports.signup = (req, res) => {
             })
 
             _user.save((err, data) => {
-                if (err) return res.status(400).json({ msg: "Something went wrong" })
+                if (err) return res.status(400).json({ err })
                 if (data) return res.status(201).json({ msg: "User created success", user: data })
             })
         }
@@ -33,7 +33,7 @@ exports.signup = (req, res) => {
 exports.signin = (req, res) => {
     User.findOne({ email: req.body.email })
         .exec((err, user) => {
-            if (err) return res.status(400).json({ msg: "Something went wrong" })
+            if (err) return res.status(400).json({ err })
             if (user) {
                 if (user.authenticate(req.body.password)) {
                     const accessToken = jwt.sign(
@@ -53,8 +53,7 @@ exports.signin = (req, res) => {
                     })
                 }
             } else {
-                return res.status(400).json({ msg: 'Something went wrong' })
+                return res.status(400).json({ msg: "User not found" })
             }
-        }
-        )
+        })
 }

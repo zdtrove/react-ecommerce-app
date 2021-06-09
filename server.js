@@ -12,6 +12,8 @@ app.use(cookieParser())
 // Routes
 app.use('/api', require('./routes/authRouter'))
 app.use('/api', require('./routes/categoryRouter'))
+app.use('/api', require('./routes/productRouter'))
+app.use('/api', require('./routes/cartRouter'))
 
 // Admin Routes
 app.use('/api', require('./routes/admin/authRouterAd'))
