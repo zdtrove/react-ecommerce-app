@@ -26,7 +26,8 @@ exports.addCategory = (req, res) => {
     try {
         const categoryObj = {
             name: req.body.name,
-            slug: slugify.default(req.body.name)
+            slug: slugify.default(req.body.name),
+            categoryImage: req.body.categoryImage
         }
 
         if (req.body.parentId) {

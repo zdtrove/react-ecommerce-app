@@ -1,44 +1,46 @@
 const Cart = require('../models/cartModel')
 
 exports.addItemToCart = (req, res) => {
-    Cart.findOne({ user: req.user._id })
+    const { _id } = req.user
+    const { cartItems } = req.body
+    const { product, quantity } = cartItems
+    Cart.findOne({ user: _id })
         .exec((err, cart) => {
             if (err) return res.status(400).json({ err })
             if (cart) {
                 // if cart already exists then update cart by quantity
-                const product = req.body.cartItems.product
                 const item = cart.cartItems.find(c => c.product == product)
+                let condition, update
                 if (item) {
-                    Cart.findOneAndUpdate({ user: req.user._id, "cartItems.product": product }, {
+                    condition = { user: _id, "cartItems.product": product }
+                    update = {
                         $set: {
-                            "cartItems": {
-                                ...req.body.cartItems,
-                                quantity: item.quantity + req.body.cartItems.quantity
+                            "cartItems.$": {
+                                ...cartItems,
+                                quantity: item.quantity + quantity
                             }
                         }
-                    }).exec((err, _cart) => {
-                        if (err) return res.status(400).json({ err })
-                        if (_cart) {
-                            return res.status(201).json({ cart: _cart })
-                        }
-                    })
+                    }
+                    
                 } else {
-                    Cart.findOneAndUpdate({ user: req.user._id }, {
+                    condition = { user: _id }
+                    update = {
                         $push: {
-                            "cartItems": req.body.cartItems
+                            "cartItems": cartItems
                         }
-                    }).exec((err, _cart) => {
-                        if (err) return res.status(400).json({ err })
-                        if (_cart) {
-                            return res.status(201).json({ cart: _cart })
-                        }
-                    })
+                    }
                 }
+                Cart.findOneAndUpdate(condition, update).exec((err, _cart) => {
+                    if (err) return res.status(400).json({ err })
+                    if (_cart) {
+                        return res.status(201).json({ cart: _cart })
+                    }
+                })
             } else {
                 // if cart not exist then create a new cart
                 const newCart = new Cart({
-                    user: req.user._id,
-                    cartItems: [req.body.cartItems]
+                    user: _id,
+                    cartItems: [cartItems]
                 })
 
                 newCart.save((err, cart) => {

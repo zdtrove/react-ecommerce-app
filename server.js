@@ -23,7 +23,8 @@ app.use('/api', require('./routes/admin/authRouterAd'))
 mongoose.connect(process.env.MONGODB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex: true
+    useCreateIndex: true,
+    useFindAndModify: false
 }).then(() => {
     console.log('Connected mongodb')
 })
