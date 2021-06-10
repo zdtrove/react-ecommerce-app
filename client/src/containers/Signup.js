@@ -1,48 +1,71 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Layout from '../components/Layout'
 import { Container, Form, Row, Col, Button } from 'react-bootstrap'
 import Input from '../components/common/Input'
+import { signup } from '../redux/actions'
+import { useDispatch, useSelector } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
 const Signup = () => {
+	const { auth } = useSelector(state => state)
+	const dispatch = useDispatch()
+	const [firstName, setFirstName] = useState('')
+	const [lastName, setLastName] = useState('')
+	const [email, setEmail] = useState('')
+	const [password, setPassword] = useState('')
+
+	const onSubmit = e => {
+		e.preventDefault()
+		dispatch(signup({ firstName, lastName, email, password }))
+	}
+
+	if (auth.authenticate) {
+		return <Redirect to={`/`} />
+	}
+
+	if (auth.loading) {
+		return <p>Loading...</p>
+	}
+
 	return (
 		<Layout>
 			<Container>
 				<Row style={{ marginTop: '50px' }}>
 					<Col md={{ span: 6, offset: 3 }}>
-						<Form>
+						<Form onSubmit={onSubmit}>
 							<Row>
 								<Col md={6}>
 									<Input
 										label="First Name"
 										placeholder="First Name"
-										value=""
 										type="text"
-										onChange={() => { }}
+										value={firstName}
+										onChange={e => setFirstName(e.target.value)}
 									/>
 								</Col>
 								<Col md={6}>
 									<Input
 										label="Last Name"
 										placeholder="Last Name"
-										value=""
 										type="text"
-										onChange={() => { }}
+										value={lastName}
+										onChange={e => setLastName(e.target.value)}
 									/>
 								</Col>
 							</Row>
 							<Input
 								label="Email"
 								placeholder="Email"
-								value=""
 								type="text"
-								onChange={() => { }}
+								value={email}
+								onChange={e => setEmail(e.target.value)}
 							/>
 							<Input
 								label="Password"
 								placeholder="Password"
-								value=""
 								type="text"
-								onChange={() => { }}
+								value={password}
+								onChange={e => setPassword(e.target.value)}
 							/>
 							<Button variant="primary" type="submit">
 								Submit

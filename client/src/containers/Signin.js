@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Layout from '../components/Layout'
 import { Container, Form, Row, Col, Button } from 'react-bootstrap'
 import Input from '../components/common/Input'
-import { isUserLoggedIn, login } from '../redux/actions'
+import { login } from '../redux/actions'
 import { useDispatch, useSelector } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
@@ -11,15 +11,8 @@ const Signin = () => {
 	const dispatch = useDispatch()
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
-	const [error, setError] = useState('')
 
-	useEffect(() => {
-		if (!auth.authenticated) {
-			dispatch(isUserLoggedIn())
-		}
-	}, [])
-
-	const userlogin = e => {
+	const onSubmit = e => {
 		e.preventDefault()
 		dispatch(login({ email, password }))
 	}
@@ -28,12 +21,16 @@ const Signin = () => {
 		return <Redirect to={`/`} />
 	}
 
+	if (auth.loading) {
+		return <p>Loading...</p>
+	}
+
 	return (
 		<Layout>
 			<Container>
 				<Row style={{ marginTop: '50px' }}>
 					<Col md={{ span: 6, offset: 3 }}>
-						<Form onSubmit={userlogin}>
+						<Form onSubmit={onSubmit}>
 							<Input
 								label="Email"
 								placeholder="Email"

@@ -9,16 +9,20 @@ const initialState = {
         picture: ''
     },
     authenticate: false,
-    authenticating: false
+    authenticating: false,
+    error: null,
+    msg: '',
+    loading: false
 }
 
-export default (state = initialState, action) => {
+const authReducer = (state = initialState, action) => {
     console.log(action)
     switch (action.type) {
         case authTypes.LOGIN_REQUEST:
             state = {
                 ...state,
-                authenticating: true
+                authenticating: true,
+                loading: true
             }
             break
         case authTypes.LOGIN_SUCCESS:
@@ -27,10 +31,40 @@ export default (state = initialState, action) => {
                 user: action.payload.user,
                 accessToken: action.payload.accessToken,
                 authenticate: true,
-                authenticating: false
+                authenticating: false,
+                loading: false
             }
             break
+        case authTypes.LOGOUT_REQUEST:
+            state = {
+                ...initialState
+            }
+            break
+        case authTypes.SIGNUP_REQUEST:
+            state = {
+                ...state,
+                loading: true
+            }
+            break
+        case authTypes.SIGNUP_SUCCESS:
+            state = {
+                ...state,
+                loading: false,
+                msg: action.payload.msg
+            }
+            break
+        case authTypes.SIGNUP_FAILURE:
+            state = {
+                ...state,
+                loading: false,
+                error: action.payload.error
+            }
+            break
+        default:
+            return state
     }
 
     return state
 }
+
+export default authReducer
