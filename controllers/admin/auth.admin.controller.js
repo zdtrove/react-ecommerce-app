@@ -1,4 +1,4 @@
-const User = require('../../models/userModel')
+const User = require('../../models/user.model')
 const jwt = require('jsonwebtoken')
 
 exports.signup = (req, res) => {
@@ -46,6 +46,8 @@ exports.signin = (req, res) => {
                     )
                     const { _id, firstName, lastName, email, role, fullName } = user
 
+                    res.cookie('accessToken', accessToken, { expiresIn: '1h' })
+
                     res.status(200).json({
                         accessToken,
                         user: { _id, firstName, lastName, email, role, fullName }
@@ -59,4 +61,9 @@ exports.signin = (req, res) => {
                 return res.status(400).json({ msg: 'Admin not found' })
             }
         })
+}
+
+exports.signout = (req, res) => {
+    res.clearCookie('accessToken')
+    res.status(200).json({ msg: 'Signout successfully' })
 }

@@ -1,4 +1,4 @@
-const Cart = require('../models/cartModel')
+const Cart = require('../models/cart.model')
 
 exports.addItemToCart = (req, res) => {
     const { _id } = req.user
@@ -21,7 +21,7 @@ exports.addItemToCart = (req, res) => {
                             }
                         }
                     }
-                    
+
                 } else {
                     condition = { user: _id }
                     update = {

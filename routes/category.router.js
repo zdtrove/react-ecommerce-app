@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { addCategory, getCategories } = require('../controllers/categoryCtrl')
+const { addCategory, getCategories } = require('../controllers/category.controller')
 const { isSignin, isAdmin } = require('../middleware')
 
 router.route('/category')

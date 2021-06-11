@@ -10,13 +10,13 @@ app.use(cors())
 app.use(cookieParser())
 
 // Routes
-app.use('/api', require('./routes/authRouter'))
-app.use('/api', require('./routes/categoryRouter'))
-app.use('/api', require('./routes/productRouter'))
-app.use('/api', require('./routes/cartRouter'))
+app.use('/api', require('./routes/auth.router'))
+app.use('/api', require('./routes/category.router'))
+app.use('/api', require('./routes/product.router'))
+app.use('/api', require('./routes/cart.router'))
 
 // Admin Routes
-app.use('/api', require('./routes/admin/authRouterAd'))
+app.use('/api', require('./routes/admin/auth.admin.router'))
 
 
 // connect db
