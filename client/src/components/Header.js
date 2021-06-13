@@ -33,7 +33,7 @@ const Header = () => {
 
 	return (
 		<>
-			<Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" style={{ zIndex: 1 }}>
+			<Navbar collapseOnSelect fixed="top" expand="lg" bg="dark" variant="dark" style={{ zIndex: 1 }}>
 				<Container>
 					<Link className="navbar-brand" to="/">Admin Dashboard</Link>
 					<Navbar.Toggle aria-controls="responsive-navbar-nav" />

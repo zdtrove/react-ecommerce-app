@@ -13,8 +13,9 @@ function createCategories(categories, parentId = null) {
     for (let cate of category) {
         categoryList.push({
             _id: cate.id,
-            name: cate._name,
+            name: cate.name,
             slug: cate.slug,
+            parentId: cate.parentId,
             children: createCategories(categories, cate._id)
         })
     }
@@ -36,7 +37,10 @@ exports.addCategory = (req, res) => {
 
         const cat = new Category(categoryObj)
         cat.save((err, category) => {
-            if (err) return res.status(400).json({ err })
+            if (err) {
+                console.log(err)
+                return res.status(400).json({ err })
+            }
             if (category) {
                 return res.status(201).json({ category })
             }
