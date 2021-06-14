@@ -17,6 +17,7 @@ app.use('/api', require('./routes/cart.router'))
 
 // Admin Routes
 app.use('/api', require('./routes/admin/auth.admin.router'))
+app.use('/api', require('./routes/admin/initialData.admin.router'))
 
 
 // connect db

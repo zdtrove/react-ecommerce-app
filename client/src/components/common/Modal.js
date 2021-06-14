@@ -2,8 +2,8 @@ import React from 'react'
 import { Modal, Button } from 'react-bootstrap'
 
 const CommonModal = (props) => {
-	return (
-		<Modal show={props.show} onHide={props.setShow}>
+    return (
+        <Modal size={props.size} show={props.show} onHide={props.setShow}>
             <Modal.Header closeButton>
                 <Modal.Title>{props.modalTitle}</Modal.Title>
             </Modal.Header>
@@ -16,7 +16,7 @@ const CommonModal = (props) => {
                 </Button>
             </Modal.Footer>
         </Modal>
-	)
+    )
 }
 
 export default CommonModal

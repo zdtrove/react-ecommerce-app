@@ -5,7 +5,7 @@ import Home from './containers/Home'
 import Signin from './containers/Signin'
 import Signup from './containers/Signup'
 import { useDispatch, useSelector } from 'react-redux'
-import { isUserLoggedIn, getAllCategory } from './redux/actions'
+import { getInitialData, isUserLoggedIn } from './redux/actions'
 import Products from './containers/Products';
 import Orders from './containers/Orders';
 import Category from './containers/Category';
@@ -18,7 +18,7 @@ function App() {
     if (!auth.authenticated) {
       dispatch(isUserLoggedIn())
     }
-    dispatch(getAllCategory())
+    dispatch(getInitialData())
   }, [dispatch, auth.authenticated])
 
   return (
