@@ -1,7 +1,7 @@
-import authReducer from './auth.reducer'
 import { combineReducers } from 'redux'
-import categoryReducer from './category.reducer'
-import productReducer from './product.reducer'
+import authReducer from './admin/auth.reducer'
+import categoryReducer from './admin/category.reducer'
+import productReducer from './admin/product.reducer'
 
 const rootReducer = combineReducers({
     auth: authReducer,

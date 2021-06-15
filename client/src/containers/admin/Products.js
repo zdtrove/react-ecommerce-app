@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import Layout from '../components/Layout'
+import Layout from '../../components/admin/Layout'
 import { Container, Row, Col, Table } from 'react-bootstrap'
-import Input from '../components/common/Input'
+import Input from '../../components/common/Input'
 import { useSelector, useDispatch } from 'react-redux'
-import { addProduct } from '../redux/actions'
-import Modal from '../components/common/Modal'
+import { addProduct } from '../../redux/actions'
+import Modal from '../../components/common/Modal'
 
 const Products = () => {
     const { category, product } = useSelector(state => state)

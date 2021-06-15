@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import Layout from '../components/Layout'
+import Layout from '../../components/admin/Layout'
 import { Container, Form, Row, Col, Button } from 'react-bootstrap'
-import Input from '../components/common/Input'
-import { signup } from '../redux/actions'
+import Input from '../../components/common/Input'
+import { signup } from '../../redux/actions'
 import { useDispatch, useSelector } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
@@ -69,7 +69,7 @@ const Signup = () => {
 							/>
 							<Button variant="primary" type="submit">
 								Submit
-			  				</Button>
+							</Button>
 						</Form>
 					</Col>
 				</Row>

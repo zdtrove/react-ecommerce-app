@@ -1,4 +1,4 @@
-const { categoryTypes } = require("../types")
+const { categoryTypes } = require("../../types")
 
 const initialState = {
     categories: [],
@@ -39,7 +39,7 @@ const buildCategories = (parentId, categories, category) => {
                 children: cat.children ? buildCategories(parentId, cat.children, category) : []
             })
         }
-        
+
     }
 
     return newCategories

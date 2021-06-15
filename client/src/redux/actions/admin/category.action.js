@@ -1,5 +1,5 @@
-import axios from "../../helpers/axios"
-import { categoryTypes } from '../types'
+import axios from "../../../helpers/axios"
+import { categoryTypes } from '../../types'
 
 export const getAllCategory = () => {
     return async dispatch => {
@@ -26,12 +26,12 @@ export const addCategory = category => {
         dispatch({ type: categoryTypes.ADD_CATEGORY_REQUEST })
         const res = await axios.post(`/api/category`, category)
         if (res.status === 201) {
-            dispatch({ 
+            dispatch({
                 type: categoryTypes.ADD_CATEGORY_SUCCESS,
-                payload: {category: res.data.category}
+                payload: { category: res.data.category }
             })
         } else {
-            dispatch({ 
+            dispatch({
                 type: categoryTypes.ADD_CATEGORY_FAILURE,
                 payload: res.data.error
             })

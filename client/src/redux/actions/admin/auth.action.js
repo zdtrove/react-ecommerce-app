@@ -1,5 +1,5 @@
-import axios from '../../helpers/axios'
-import { authTypes } from '../types'
+import axios from '../../../helpers/axios'
+import { authTypes } from '../../types'
 
 export const signup = user => {
     return async dispatch => {

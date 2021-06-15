@@ -1,4 +1,4 @@
-import axios from "../../helpers/axios"
+import axios from "../../../helpers/axios"
 
 export const addProduct = product => {
 	return async dispatch => {

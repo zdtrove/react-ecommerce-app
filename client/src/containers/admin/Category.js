@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
-import Layout from '../components/Layout'
-import { addCategory } from '../redux/actions'
+import Layout from '../../components/admin/Layout'
+import { addCategory } from '../../redux/actions'
 import { useDispatch, useSelector } from 'react-redux'
-import Input from '../components/common/Input'
-import Modal from '../components/common/Modal'
+import Input from '../../components/common/Input'
+import Modal from '../../components/common/Modal'
 
 const Category = () => {
     const { category } = useSelector(state => state)
@@ -80,7 +80,7 @@ const Category = () => {
                 handleSubmit={handleSubmit}
                 modalTitle={'Add New Category'}
             >
-                <Input 
+                <Input
                     placeholder={`Category Name`}
                     value={categoryName}
                     onChange={e => setCategoryName(e.target.value)}

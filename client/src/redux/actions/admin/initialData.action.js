@@ -1,5 +1,5 @@
-import axios from "../../helpers/axios"
-import { categoryTypes, productTypes } from "../types"
+import axios from "../../../helpers/axios"
+import { categoryTypes, productTypes } from "../../types"
 
 export const getInitialData = () => {
     return async dispatch => {
