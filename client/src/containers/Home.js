@@ -1,58 +1,60 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Home = () => {
     return (
         <div className="home">
             <div className="menu">
                 <ul>
-                    <li className="level0 drop-submenu">
-                        <a href="#" className="title">All products</a>
-                        <div className="wrap_submenu">
-                            <ul className="level0">
+                    <li>
+                        <Link to="/" className="title">All products</Link>
+                        <div className="submenu">
+                            <ul>
                                 <li>
-                                    <a href="#">Folding Tables</a>
+                                    <Link to="/">Folding Tables</Link>
                                 </li>
                                 <li className="parent">
-                                    <a href="#">Living Room Tables</a>
-                                    <div className="wrap_submenu">
+                                    <Link to="/">Living Room Tables</Link>
+                                    <div className="submenu">
                                         <ul>
-                                             <li>
-                                                <a href="#">Dining Room Tables</a>
+                                            <li>
+                                                <Link to="/">Dining Room Tables</Link>
                                             </li>
                                             <li>
-                                                <a href="#">Folding Tables</a>
+                                                <Link to="/">Folding Tables</Link>
                                             </li>
                                             <li>
-                                                <a href="#">Living Room Tables</a>
+                                                <Link to="/">Living Room Tables</Link>
                                             </li>
                                         </ul>
                                     </div>
                                 </li>
                                 <li className="parent">
-                                    <a href="#">Bed Rooms</a>
-                                    <div className="wrap_submenu">
+                                    <Link to="/">Bed Rooms</Link>
+                                    <div className="submenu">
                                         <ul>
-                                             <li>
-                                                <a href="#">Bed Room Tables</a>
+                                            <li>
+                                                <Link to="/">Bed Room Tables</Link>
                                             </li>
                                             <li>
-                                                <a href="#">Bed Folding Tables</a>
+                                                <Link to="/">Bed Folding Tables</Link>
                                             </li>
                                             <li>
-                                                <a href="#">Bed Living Tables</a>
+                                                <Link to="/">Bed Living Tables</Link>
                                             </li>
                                         </ul>
                                     </div>
                                 </li>
                                 <li>
-                                    <a href="#">End Tables</a>
+                                    <Link to="/">End Tables</Link>
                                 </li>
                             </ul>
                         </div>
                     </li>
                 </ul>
             </div>
-    	</div>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error quia aut aliquid corporis ducimus ipsa aspernatur perferendis, culpa non deleniti sequi quisquam, fugit cum ipsam corrupti, quo nihil quidem voluptates?</p>
+        </div>
     )
 }
 
