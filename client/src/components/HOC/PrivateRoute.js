@@ -7,7 +7,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
         if (accessToken) {
             return <Component {...props} />
         } else {
-            return <Redirect to={`/signin`} />
+            return <Redirect to={`/admin/signin`} />
         }
     }} />
 }

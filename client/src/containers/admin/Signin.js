@@ -18,7 +18,7 @@ const Signin = () => {
 	}
 
 	if (auth.authenticate) {
-		return <Redirect to={`/`} />
+		return <Redirect to={`/admin`} />
 	}
 
 	if (auth.loading) {
