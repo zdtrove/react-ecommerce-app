@@ -60,3 +60,7 @@ exports.getCategories = (req, res) => {
             }
         })
 }
+
+exports.updateCategories = (req, res) => {
+    res.status(200).json({ body: req.body })
+}
