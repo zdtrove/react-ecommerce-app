@@ -11,9 +11,23 @@ const CommonModal = (props) => {
                 {props.children}
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="primary" onClick={props.handleSubmit}>
-                    Save Changes
-                </Button>
+                {
+                    props.buttons ? props.buttons.map((btn, index) => 
+                        <Button key={index} variant={btn.color} onClick={btn.onClick}>
+                            {btn.label}
+                        </Button>
+                    ) : 
+                    <Button 
+                        style={{ backgroundColor: '#333' }}
+                        {...props} 
+                        className="btn-sm" 
+                        variant="primary" 
+                        onClick={props.handleSubmit}
+                    >
+                        Save
+                    </Button>
+                }
+                
             </Modal.Footer>
         </Modal>
     )

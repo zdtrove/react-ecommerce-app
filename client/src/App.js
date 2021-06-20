@@ -11,17 +11,20 @@ import OrdersAdmin from './containers/admin/Orders';
 import CategoryAdmin from './containers/admin/Category';
 import Home from './containers/Home';
 import ProductList from './containers/ProductList';
+import PageAdmin from './containers/admin/Page';
 
 function App() {
   const dispatch = useDispatch()
   const { auth } = useSelector(state => state)
 
   useEffect(() => {
-    if (!auth.authenticated) {
+    if (!auth.authenticate) {
       dispatch(isUserLoggedIn())
     }
-    dispatch(getInitialData())
-  }, [dispatch, auth.authenticated])
+    if (auth.authenticate) {
+      dispatch(getInitialData())
+    }
+  }, [dispatch, auth.authenticate])
 
   return (
     <div className="App">
@@ -29,6 +32,7 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route exact path="/category/:slug" component={ProductList} />
         <PrivateRoute exact path="/admin" component={HomeAdmin} />
+        <PrivateRoute path="/admin/page" component={PageAdmin} />
         <PrivateRoute path="/admin/products" component={ProductsAdmin} />
         <PrivateRoute path="/admin/orders" component={OrdersAdmin} />
         <PrivateRoute path="/admin/category" component={CategoryAdmin} />
