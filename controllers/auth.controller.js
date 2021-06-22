@@ -39,7 +39,7 @@ exports.signin = (req, res) => {
         .exec((err, user) => {
             if (err) return res.status(400).json({ err })
             if (user) {
-                if (user.authenticate(req.body.password)) {
+                if (user.authenticate(req.body.password) && user.role === 'user') {
                     const accessToken = jwt.sign(
                         { _id: user._id, role: user.role },
                         process.env.ACCESS_TOKEN_SECRET,
@@ -53,7 +53,7 @@ exports.signin = (req, res) => {
                     })
                 } else {
                     return res.status(400).json({
-                        msg: "Invalid Password"
+                        msg: "Incorrect Authentication"
                     })
                 }
             } else {

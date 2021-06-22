@@ -27,7 +27,8 @@ export const signup = user => {
 export const login = user => {
     return async dispatch => {
         dispatch({ type: authTypes.LOGIN_REQUEST })
-        const res = await axios.post(`/api/admin/signin`, {
+        const loginUrl = user.role === 'admin' ? '/api/admin/signin' : '/api/signin'
+        const res = await axios.post(loginUrl, {
             ...user
         })
         if (res.status === 200) {

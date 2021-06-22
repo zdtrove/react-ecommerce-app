@@ -14,7 +14,7 @@ const Signin = () => {
 
 	const onSubmit = e => {
 		e.preventDefault()
-		dispatch(login({ email, password }))
+		dispatch(login({ email, password, role: 'admin' }))
 	}
 
 	if (auth.authenticate) {
