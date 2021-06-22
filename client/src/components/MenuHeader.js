@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllCategory } from '../redux/actions'
+import { Link } from 'react-router-dom'
 
 const MenuHeader = () => {
     const { category } = useSelector(state => state)
@@ -17,7 +18,9 @@ const MenuHeader = () => {
                 <li key={index}>
                     {
                         cat.parentId
-                            ? <a href={cat.slug}>{cat.name}</a>
+                            ? <Link to={`/category/${cat.slug}?cid=${cat._id}&type=${cat.type}`}>
+                                {cat.name}
+                            </Link>
                             : <span>{cat.name}</span>
                     }
                     {cat.children.length > 0 ? (

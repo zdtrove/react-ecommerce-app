@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import Layout from '../../components/admin/Layout'
-import { 
-    addCategory, 
-    updateCategories, 
-    getAllCategory, 
+import {
+    addCategory,
+    updateCategories,
     deleteCategories as deleteCategoriesAction
 } from '../../redux/actions'
 import { useDispatch, useSelector } from 'react-redux'
@@ -53,9 +52,9 @@ const Category = () => {
 
     const createCategoryList = (categories, options = []) => {
         categories && categories.forEach(cat => {
-            options.push({ 
-                value: cat._id, 
-                name: cat.name, 
+            options.push({
+                value: cat._id,
+                name: cat.name,
                 parentId: cat.parentId,
                 type: cat.type
             })
@@ -76,7 +75,7 @@ const Category = () => {
         dispatch(addCategory({
             name: categoryName,
             parentId: parentCategoryId,
-            categoryImage: "https://res.cloudinary.com/dj7zmqrth/image/upload/v1621245029/social-media-app/awcnvz4mxeeyn51agzhv.jpg"
+            categoryImage: "https://res.cloudinary.com/dj7zmqrth/image/upload/v1622296359/social-media-app/rsdnxxzk08kgh9afi3zw.jpg"
         }))
         setCategoryName('')
         setParentCategoryId('')
@@ -99,8 +98,6 @@ const Category = () => {
             const category = categories.find((cat, _index) => catId === cat.value)
             category && expandedArray.push(category)
         })
-
-        console.log(checkedArray, expandedArray)
 
         setCheckedArray(checkedArray)
         setExpandedArray(expandedArray)
@@ -284,9 +281,6 @@ const Category = () => {
 
     const deleteCategories = () => {
         const checkedIdsArray = checkedArray.map((item, index) => ({ _id: item.value }))
-        const expandedIdsArray = expandedArray.map((item, index) => ({ _id: item.value }))
-        const idsArray = expandedIdsArray.concat(checkedIdsArray)
-        console.log(idsArray)
         if (checkedIdsArray.length > 0) {
             dispatch(deleteCategoriesAction(checkedIdsArray))
             setShowDeleteCategory(false)

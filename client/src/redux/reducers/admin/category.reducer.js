@@ -49,7 +49,6 @@ const buildCategories = (parentId, categories, category) => {
 }
 
 const categoryReducer = (state = initialState, action) => {
-    console.log(action)
     switch (action.type) {
         case categoryTypes.GET_CATEGORIES_SUCCESS:
             return {
@@ -64,7 +63,6 @@ const categoryReducer = (state = initialState, action) => {
         case categoryTypes.ADD_CATEGORY_SUCCESS:
             const { category } = action.payload
             const updatedCategories = buildCategories(category.parentId, state.categories, category)
-            console.log(updatedCategories)
             return {
                 ...state,
                 categories: updatedCategories,

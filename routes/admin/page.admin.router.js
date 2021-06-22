@@ -1,6 +1,8 @@
 const router = require('express').Router()
-const { createPage } = require('../../controllers/admin/page.admin.controller')
+const { createPage, getPage } = require('../../controllers/admin/page.admin.controller')
+const { isSignin, isAdmin } = require('../../middleware')
 
-router.post(`/page`, createPage)
+router.post(`/page`, isSignin, isAdmin, createPage)
+router.get(`/page/:category/:type`, getPage)
 
 module.exports = router

@@ -7,7 +7,6 @@ const getAllCategory = () => {
         const res = await axios.get(`/api/category`)
         if (res.status === 200) {
             const { categoryList } = res.data
-            console.log(categoryList)
             dispatch({
                 type: categoryTypes.GET_CATEGORIES_SUCCESS,
                 payload: { categories: categoryList }
@@ -23,7 +22,6 @@ const getAllCategory = () => {
 
 export const addCategory = category => {
     return async dispatch => {
-        console.log(category)
         dispatch({ type: categoryTypes.ADD_CATEGORY_REQUEST })
         try {
             const res = await axios.post(`/api/category`, category)
@@ -38,7 +36,6 @@ export const addCategory = category => {
                     payload: res.data.error
                 })
             }
-            console.log(res)
         } catch (err) {
             console.log(err)
         }
@@ -57,7 +54,6 @@ export const updateCategories = category => {
 }
 
 export const deleteCategories = ids => {
-    console.log(ids)
     return async dispatch => {
         const res = await axios.delete(`/api/category`, {
             data: {

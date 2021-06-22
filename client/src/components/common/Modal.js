@@ -1,33 +1,40 @@
 import React from 'react'
 import { Modal, Button } from 'react-bootstrap'
 
-const CommonModal = (props) => {
+const CommonModal = ({
+    size,
+    show,
+    setShow,
+    modalTitle,
+    children,
+    buttons,
+    handleSubmit
+}) => {
     return (
-        <Modal size={props.size} show={props.show} onHide={props.setShow}>
+        <Modal size={size} show={show} onHide={setShow}>
             <Modal.Header closeButton>
-                <Modal.Title>{props.modalTitle}</Modal.Title>
+                <Modal.Title>{modalTitle}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                {props.children}
+                {children}
             </Modal.Body>
             <Modal.Footer>
                 {
-                    props.buttons ? props.buttons.map((btn, index) => 
+                    buttons ? buttons.map((btn, index) =>
                         <Button key={index} variant={btn.color} onClick={btn.onClick}>
                             {btn.label}
                         </Button>
-                    ) : 
-                    <Button 
-                        style={{ backgroundColor: '#333' }}
-                        {...props} 
-                        className="btn-sm" 
-                        variant="primary" 
-                        onClick={props.handleSubmit}
-                    >
-                        Save
-                    </Button>
+                    ) :
+                        <Button
+                            style={{ backgroundColor: '#333' }}
+                            className="btn-sm"
+                            variant="primary"
+                            onClick={handleSubmit}
+                        >
+                            Save
+                        </Button>
                 }
-                
+
             </Modal.Footer>
         </Modal>
     )

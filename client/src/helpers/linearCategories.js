@@ -1,8 +1,8 @@
 const linearCategories = (categories, options = []) => {
     categories && categories.forEach(cat => {
-        options.push({ 
-            _id: cat._id, 
-            name: cat.name, 
+        options.push({
+            value: cat._id,
+            name: cat.name,
             parentId: cat.parentId,
             type: cat.type
         })
