@@ -56,7 +56,7 @@ export const isUserLoggedIn = () => {
     return async dispatch => {
         const accessToken = localStorage.getItem('accessToken')
         if (accessToken) {
-            const user = localStorage.getItem('user')
+            const user = JSON.parse(localStorage.getItem('user'))
             dispatch({
                 type: authTypes.LOGIN_SUCCESS,
                 payload: {

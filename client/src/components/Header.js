@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import flipkartLogo from '../images/logo/flipkart.png';
 import goldenStar from '../images/logo/golden-star.png';
 import { IoIosArrowDown, IoIosCart, IoIosSearch } from 'react-icons/io';
-import { 
-  Modal,
-  MaterialInput,
-  MaterialButton,
-  DropdownMenu
+import {
+    Modal,
+    MaterialInput,
+    MaterialButton,
+    DropdownMenu
 } from './MaterialUI';
 import { useDispatch, useSelector } from 'react-redux'
 import { login } from '../redux/actions'
@@ -29,7 +29,7 @@ const Header = (props) => {
 
     useEffect(() => {
         if (auth.authenticate) {
-
+            setLoginModal(false)
         }
     }, [auth.authenticate])
 
@@ -60,7 +60,7 @@ const Header = (props) => {
     const renderLoggedInMenu = () => {
         return <DropdownMenu
             menu={
-                <a>
+                <a className="fullName">
                     {auth.user.fullName}
                 </a>
             }
@@ -79,10 +79,10 @@ const Header = (props) => {
             ]}
         />
     }
-  
+
     return (
         <div className="header-client">
-            <Modal 
+            <Modal
                 visible={loginModal}
                 onClose={() => setLoginModal(false)}
             >
@@ -93,20 +93,20 @@ const Header = (props) => {
                             <p>Get access to your Orders, Wishlist and Recommendations</p>
                         </div>
                         <div className="rightspace">
-                            <MaterialInput 
+                            <MaterialInput
                                 type="text"
                                 label="Enter Email/Enter Mobile Number"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             />
-                            <MaterialInput 
+                            <MaterialInput
                                 type="password"
                                 label="Enter Password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                // rightElement={<a href="#">Forgot?</a>}
+                            // rightElement={<a href="#">Forgot?</a>}
                             />
-                            <MaterialButton 
+                            <MaterialButton
                                 title="Login"
                                 bgColor="#fb641b"
                                 textColor="#ffffff"
@@ -116,7 +116,7 @@ const Header = (props) => {
                                 onClick={userLogin}
                             />
                             <p>OR</p>
-                            <MaterialButton 
+                            <MaterialButton
                                 title="Request OTP"
                                 bgColor="#fff"
                                 textColor="#2874f0"
@@ -139,46 +139,46 @@ const Header = (props) => {
                         <img src={goldenStar} className="goldenStar" alt="" />
                     </a>
                 </div>
-                <div style={{ padding: '0 10px'}}>
+                <div style={{ padding: '0 10px' }}>
                     <div className="searchInputContainer">
                         <input
                             className="searchInput"
                             placeholder={'search for products, brands and more'}
                         />
-                    <div className="searchIconContainer">
-                        <IoIosSearch style={{
-                            color: '#2874f0'
-                        }} />
+                        <div className="searchIconContainer">
+                            <IoIosSearch style={{
+                                color: '#2874f0'
+                            }} />
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div className="rightMenu">
-                {
-                    auth.authenticate ?
-                        renderLoggedInMenu() : renderNonLoggedInMenu()
-                }
-                <DropdownMenu
-                    menu={
-                        <a className="more">
-                            <span>More</span>
-                            <IoIosArrowDown />
-                        </a>
+                <div className="rightMenu">
+                    {
+                        auth.authenticate ?
+                            renderLoggedInMenu() : renderNonLoggedInMenu()
                     }
-                    menus={[
-                        { label: 'Notification Preference', href: '', icon: null },
-                        { label: 'Sell on flipkart', href: '', icon: null },
-                        { label: '24x7 Customer Care', href: '', icon: null },
-                        { label: 'Advertise', href: '', icon: null },
-                        { label: 'Download App', href: '', icon: null }
-                    ]}
-                />
-                <div>
-                    <a className="cart">
-                        <IoIosCart />
-                        <span style={{ margin: '0 10px' }}>Cart</span>
-                    </a>
+                    <DropdownMenu
+                        menu={
+                            <a className="more">
+                                <span>More</span>
+                                <IoIosArrowDown />
+                            </a>
+                        }
+                        menus={[
+                            { label: 'Notification Preference', href: '', icon: null },
+                            { label: 'Sell on flipkart', href: '', icon: null },
+                            { label: '24x7 Customer Care', href: '', icon: null },
+                            { label: 'Advertise', href: '', icon: null },
+                            { label: 'Download App', href: '', icon: null }
+                        ]}
+                    />
+                    <div>
+                        <a className="cart">
+                            <IoIosCart />
+                            <span style={{ margin: '0 10px' }}>Cart</span>
+                        </a>
+                    </div>
                 </div>
-            </div>
             </div>
         </div>
     )

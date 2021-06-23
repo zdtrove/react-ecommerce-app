@@ -8,7 +8,8 @@ const initialState = {
 		under15k: [],
 		under20k: [],
 		under30k: []
-	}
+	},
+	productDetail: {}
 }
 
 const productReducer = (state = initialState, action) => {
@@ -25,6 +26,11 @@ const productReducer = (state = initialState, action) => {
 				productsByPrice: {
 					...action.payload.productsByPrice
 				}
+			}
+		case productTypes.GET_PRODUCT_DETAIL_BY_ID_SUCCESS:
+			return {
+				...state,
+				productDetail: action.payload.productDetail
 			}
 		default:
 			return state

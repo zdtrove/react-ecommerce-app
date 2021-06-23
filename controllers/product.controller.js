@@ -54,3 +54,18 @@ exports.getProductsBySlug = (req, res) => {
             }
         })
 }
+
+exports.getProductDetailById = (req, res) => {
+    const { productId } = req.params
+    if (productId) {
+        Product.findOne({ _id: productId })
+            .exec((err, product) => {
+                if (err) return res.status(400).json({ err })
+                if (product) {
+                    res.status(200).json({ product })
+                }
+            })
+    } else {
+        return res.status(400).json({ error: 'Params required' })
+    }
+}

@@ -12,6 +12,7 @@ import CategoryAdmin from './containers/admin/Category';
 import Home from './containers/Home';
 import ProductList from './containers/ProductList';
 import PageAdmin from './containers/admin/Page';
+import ProductDetail from './containers/ProductDetail';
 
 function App() {
   const dispatch = useDispatch()
@@ -30,7 +31,8 @@ function App() {
     <div className="App">
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/category/:slug" component={ProductList} />
+        <Route path="/:productSlug/:productId/p" component={ProductDetail} />
+        <Route path="/:slug" component={ProductList} />
         <PrivateRoute exact path="/admin" component={HomeAdmin} />
         <PrivateRoute path="/admin/page" component={PageAdmin} />
         <PrivateRoute path="/admin/products" component={ProductsAdmin} />

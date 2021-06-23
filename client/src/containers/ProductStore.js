@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProductsBySlug } from '../redux/actions'
+import { Link } from 'react-router-dom'
 
 const ProductStore = (props) => {
     const { product } = useSelector(state => state)
@@ -30,7 +31,7 @@ const ProductStore = (props) => {
                             <div style={{ display: 'flex' }}>
                                 {
                                     product.productsByPrice[key].map((product, index) =>
-                                        <div key={index} className="product-container">
+                                        <Link to={`/${product.slug}/${product._id}/p`} style={{ display: 'block' }} key={index} className="product-container">
                                             <div className="product-img-container">
                                                 <img src={product.productPictures[0].url} alt="" />
                                             </div>
@@ -42,7 +43,7 @@ const ProductStore = (props) => {
                                                 </div>
                                                 <div className="product-price">{product.price}</div>
                                             </div>
-                                        </div>
+                                        </Link>
                                     )
                                 }
                             </div>
