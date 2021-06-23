@@ -75,12 +75,14 @@ export const isUserLoggedIn = () => {
 export const signout = () => {
     return async dispatch => {
         dispatch({ type: authTypes.LOGOUT_REQUEST })
-        const res = await axios.post(`/api/admin/signout`)
-        if (res.status === 200) {
-            localStorage.clear()
-            dispatch({ type: authTypes.LOGOUT_SUCCESS })
-        } else {
-            dispatch({ type: authTypes.LOGOUT_REQUEST })
-        }
+        localStorage.clear()
+        dispatch({ type: authTypes.LOGOUT_SUCCESS })
+        // const res = await axios.post(`/api/admin/signout`)
+        // if (res.status === 200) {
+        //     localStorage.clear()
+        //     dispatch({ type: authTypes.LOGOUT_SUCCESS })
+        // } else {
+        //     dispatch({ type: authTypes.LOGOUT_REQUEST })
+        // }
     }
 }

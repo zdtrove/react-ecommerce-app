@@ -30,9 +30,6 @@ function App() {
   return (
     <div className="App">
       <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/:productSlug/:productId/p" component={ProductDetail} />
-        <Route path="/:slug" component={ProductList} />
         <PrivateRoute exact path="/admin" component={HomeAdmin} />
         <PrivateRoute path="/admin/page" component={PageAdmin} />
         <PrivateRoute path="/admin/products" component={ProductsAdmin} />
@@ -40,6 +37,9 @@ function App() {
         <PrivateRoute path="/admin/category" component={CategoryAdmin} />
         <Route path="/admin/signin" component={SigninAdmin} />
         <Route path="/admin/signup" component={SignupAdmin} />
+        <Route exact path="/" component={Home} />
+        <Route path="/:productSlug/:productId/p" component={ProductDetail} />
+        <Route path="/:slug" component={ProductList} />
       </Switch>
     </div>
   );
